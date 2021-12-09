@@ -1,0 +1,29 @@
+---
+title: "Airport Games in the package CoopGame"
+author: "Edgar Wolf (Hochschule Kempten)"
+date: "Dezember 9, 2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+Dieser Report dient der Dokumenation einer prototypischen Implementierung des Airport Problems, sowie einer inhaltlichen Aufarbeitung des zugrunde liegenden Problems. Der in diesem Report implementierte Code ist dabei eine Erweiterung des `R`-Paktes `CoopGame`, und stellt die noch nicht implementierte Funkionaliät zur Verfügung.  
+
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
