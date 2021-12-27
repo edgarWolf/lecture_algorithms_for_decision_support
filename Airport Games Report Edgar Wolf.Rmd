@@ -11,14 +11,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Disclaimer
 
-Dieser Report dient der Dokumenation einer prototypischen Implementierung des Airport Problems, sowie einer inhaltlichen Aufarbeitung des zugrunde liegenden Problems. Der in diesem Report implementierte Code ist dabei eine Erweiterung des `R`-Paktes `CoopGame`, und stellt die noch nicht implementierte Funkionaliät zur Verfügung.  
+Dieser Report dient der Dokumenation einer prototypischen Implementierung des Airport Problems, sowie einer inhaltlichen Zusammenfassung des zugrunde liegenden Problems. Der in diesem Report implementierte Code ist dabei eine Erweiterung des `R`-Paktes `CoopGame`, und stellt die noch nicht implementierte Funkionaliät zur Verfügung.  
 
 
 ## Airport Games
 Airport Games sind eine spzeielle Art kooperativer Spiele, denen ein sog. Airport Problem zugrunde liegt. Das Problem lässt sich dabei wie folgt beschreiben: 
-Sei ein Paar $(N, k)$  gegeben, wobei $N=\{1,..., n\}$ die Menge aller Spieler und $k \in \mathbb{R}_+^N$ den Vektor aller marginalen Kosten darstellen. Jeder dieser Spieler ist im Besitz eines Flugzeug, die sich jeweils in ihren Eigenschaften unterscheiden. Diese bestimmen auch die nötige Minmallänge eines Landestreifen für das jeweiige Flugzeug. Unter der Annahme, dass die Spieler geordnet sind nach der nötigen Minimallänge ihres jeweiligen Flugzeuges, also $k_1 \ll ... \ll k_n$ gilt, und die Kosten für den Landestreifen linear mit der Länge skalieren, ergeben sich die Kosten für Spieler $i$ als $\sum_{j=1}^i k_j$, wobei $k_j$ die zusätzlichen Kosten für die Bereitstellung des längeren Landestreifen des Spielers $j$ im Vergleich zum kürzeren Streifen des Spielers $j-1$. Die Problemstellung ergibt sich damit, wie man die Kosten eines Landestreifens, der alle Flugzeuge aller Spieler abdeckt, $\sum_{i \in N} k_i$ verteilen kann.
+Sei ein Paar $(N, k)$  gegeben, wobei $N=\{1,..., n\}$ die Menge aller Spieler und $k \in \mathbb{R}_+^N$ den Vektor der marginalen Kosten je Spieler $i$ darstellen. Jeder dieser Spieler ist im Besitz eines Flugzeug, die sich jeweils in ihren Eigenschaften unterscheiden. Diese bestimmen auch die nötige Minmallänge eines Landestreifen für das jeweiige Flugzeug. Unter der Annahme, dass die Spieler geordnet sind nach der nötigen Minimallänge ihres jeweiligen Flugzeuges (und insbesondere $k_1 \ll ... \ll k_n$ gilt), sowie die Kosten für den Landestreifen linear mit der Länge skalieren, ergeben sich die Kosten für Spieler $i$ als $\sum_{j=1}^i k_j$, wobei $k_j$ die zusätzlichen Kosten für die Bereitstellung des längeren Landestreifen des Spielers $j$ im Vergleich zum kürzeren Streifen des Spielers $j-1$ darstellen. Die Problemstellung ergibt sich damit, wie man die Kosten eines Landestreifens, der alle Flugzeuge aller Spieler abdeckt, $\sum_{i \in N} k_i$ fair verteilen kann.
 
-Nun kann jedem solchen Problem $(N,k)$ ein Airport Game $(N,c)$ zugeordnet werden mit der Kostenfunktion einer Koalition $S$ als $c(S) = \sum_{j=1}^i k_j, i = max\{j | j \in S\}$.
+Nun kann jedem solchen Problem $(N,k)$ ein Airport Game $(N,c)$ zugeordnet werden mit der Kostenfunktion einer Koalition $S \subseteq N$ als $c(S) = \sum_{j=1}^i k_j, i = max\{j | j \in S\}$. Es handelt sich also hierbei um ein Kostenspiel, deshalb wird die Kostenfunktion $c(S)$ hier als Gegenstand der charakteristischen Funktion einer Koalition $S$ betrachtet, und im folgenden in `R` prototypisch implementiert.
 
 
 ```{r cars}
