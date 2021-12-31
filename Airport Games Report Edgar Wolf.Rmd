@@ -1,8 +1,9 @@
 ---
 title: "Airport Games im Package CoopGame"
 author: "Edgar Wolf (Hochschule Kempten)"
-date: "26. Dezember 2021"
+date: "2. Januar 2022"
 output: pdf_document
+bibliography: references.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -15,7 +16,7 @@ Dieser Report dient der Dokumenation einer prototypischen Implementierung des Ai
 
 
 ## Airport Games
-Airport Games sind eine spzeielle Art kooperativer Spiele, denen ein sog. Airport Problem zugrunde liegt. Das Problem lässt sich dabei wie folgt beschreiben: 
+Airport Games sind eine spzeielle Art kooperativer Spiele, denen ein sog. Airport Problem zugrunde liegt. Die anschließenden theorethischen Erörterungen diesbezüglich basieren dabei auf dem Paper [@borm2001operations], S.13-14 von Peter Brom, Herbert Hamers und Ruud Hednrickx. Innerhalb dieses Papers werden weitere Spiele behandelt, sodass zu Details zu Airport Games oder anderen Spielen auf dieses Paper verwiesen sei. Das Airport-Problem lässt sich nun wie folgt beschreiben: 
 Sei ein Paar $(N, k)$  gegeben, wobei $N=\{1,..., n\}$ die Menge aller Spieler und $k \in \mathbb{R}_+^N$ den Vektor der marginalen Kosten je Spieler $i$ darstellen. Jeder dieser Spieler ist im Besitz eines Flugzeug, die sich jeweils in ihren Eigenschaften unterscheiden. Diese bestimmen auch die nötige Minmallänge eines Landestreifen für das jeweiige Flugzeug. Unter der Annahme, dass die Spieler geordnet sind nach der nötigen Minimallänge ihres jeweiligen Flugzeuges, sowie die Kosten für den Landestreifen linear mit der Länge skalieren, ergeben sich die Kosten für Spieler $i$ als $\sum_{j=1}^i k_j$, wobei $k_j$ die zusätzlichen Kosten für die Bereitstellung des längeren Landestreifen des Spielers $j$ im Vergleich zum kürzeren Streifen des Spielers $j-1$ darstellen. Die Problemstellung ergibt sich damit, wie man die Kosten eines Landestreifens, der alle Flugzeuge aller Spieler abdeckt, $\sum_{i \in N} k_i$ fair verteilen kann.
 
 Nun kann jedem solchen Problem $(N,k)$ ein Airport Game $(N,c)$ zugeordnet werden mit der Kostenfunktion einer Koalition $S \subseteq N$ als $c(S) = \sum_{j=1}^i k_j, i = max\{j | j \in S\}$. Es handelt sich also hierbei um ein Kostenspiel, deshalb wird die Kostenfunktion $c(S)$ hier als Gegenstand der charakteristischen Funktion einer Koalition $S$ betrachtet, und im folgenden in `R` prototypisch implementiert.
@@ -27,7 +28,7 @@ Der Code in der Datei `AirportGames.R` orientiert sich dabei vom Aufbau an die S
 * den Spielevektor.
 * den Wert einer vom Nutzer spezifizierten Koalition.
 
-Im folgenden wird der Code für den Spielevektor präsentiert. Dabei muss der Nutzer die Anzahl an Spielern $n$ angeben, sowie einen numerischen Vektor $k$ mit den marginalen Kosten je Spieler, nach der Definition aus der theoretischen Erörterung. Wichtig ist hierbei dass der Vektor $k$ die Länge n hat, also die Anzahl der Kostenwerte mit der Anzahl an Spielern übereinstimmt.
+Im folgenden wird der Code für den Spiele-Objekt, sowie den Spielevektor präsentiert. Dabei muss der Nutzer die Anzahl an Spielern $n$ angeben, sowie einen numerischen Vektor $k$ mit den marginalen Kosten je Spieler, nach der Definition aus der theoretischen Erörterung. Wichtig ist hierbei dass der Vektor $k$ die Länge n hat, also die Anzahl der Kostenwerte mit der Anzahl an Spielern übereinstimmt.
 
 ```{r AirportGames}
 source("AirportGames.R")
@@ -35,6 +36,8 @@ airportGame(n=3, k=c(10, 20, 30))
 # Oder alternativ:
 airportGameVector(n=3, k=c(10, 20, 30))
 ```
+
+## Referenzen
 
 
 
