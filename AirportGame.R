@@ -11,7 +11,7 @@ library(CoopGame)
 #' @template param/k
 #' @return Cost value for a coalition \code{S}.
 #' @examples
-#' library(CoopGames)
+#' source("AirportGames.R")
 #' airportGameValue(S=c(1, 2, 3), k=c(10, 20, 30))
 #' 
 airportGameValue<-function(S, k) {
@@ -47,7 +47,7 @@ logicAirportGameValue=function(S, k) {
 #' @template param/k
 #' @return  Game vector where each element represents the cost for each coalition possible (except empty coalition).
 #' @examples 
-#' library(CoopGame)
+#' source("AirportGames.R")
 #' airportGameVector(n=3,k=c(10, 20, 30))
 #' 
 airportGameVector<-function(n, k) {
@@ -81,17 +81,18 @@ airportGameVector<-function(n, k) {
 #' @section Related Functions: 
 #' \link{airportGameValue}, \link{airportGameVector}
 #' @examples
-#' library(CoopGame) 
+#' source("AirportGames.R")
 #' airportGame(n=3, k=c(10, 20, 30))
 #' 
 #' \donttest{
-#' library(CoopGame) 
+#' source("AirportGames.R") 
 #' airportGame(n=3, k=c(10, 20, 30))
 #' #Output:
 #' #$n
 #' #[1] 3
 #' 
-#' $k 10 20 30
+#' $k 
+#' #[1] 10 20 30
 #' 
 #' #$c
 #' #[1] 10 30 60 30 60 60 60
